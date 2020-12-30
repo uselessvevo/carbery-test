@@ -1,0 +1,44 @@
+<!doctype html>
+<style>
+    body {
+        display: flex;
+        height: 600px;
+        width: 600px;
+        border: 20px solid white;
+        background-color: white;
+        box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+
+    code {
+        background-color: gray;
+        font-color: black;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 12px;
+    }
+    div {
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div>
+        <h1>{% if current_user.is_authenticated %} Hello, {{ current_user.username }} {% endif %}</h1><br>
+        Before you go, run python script from <code>scripts/newdb.py</code><br>
+        Then register and log-in through request (use insomnia or whatever you please) with this data<br><br>
+    Example:
+    <code>
+    {
+        "username": "username125",
+        "password": "password123"
+    }
+    </code>
+    <br><br>
+    Links:<br>
+    {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('user.register') }}">Register</a><br>
+        <a href="{{ url_for('user.login') }}">Login</a><br>
+    {% endif %}
+    <a href="{{ url_for('user.upload_file') }}">Upload image</a><br>
+    </div>
+</body>
